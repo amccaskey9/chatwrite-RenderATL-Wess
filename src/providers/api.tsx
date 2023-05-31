@@ -1,32 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import {
-  Client, 
-  Account,
-  Databases
-} from 'appwrite';
+import { Client, Account, Databases } from "appwrite";
 
-const PROJECT_ID = '63ff89e0cd55bd8f7b96';
-const ENDPOINT = 'https://cloud.appwrite.io/v1';
+const PROJECT_ID = "64775b8765878659c2dc";
+const ENDPOINT = "https://cloud.appwrite.io/v1";
 
 const appwrite = new Client();
-appwrite.setEndpoint(ENDPOINT)
-        .setProject(PROJECT_ID);
+appwrite.setEndpoint(ENDPOINT).setProject(PROJECT_ID);
 
 const client = {
   client: appwrite,
   account: new Account(appwrite),
   database: new Databases(appwrite),
-}
+};
 
 const Context = React.createContext(client);
 
-const Component = ({children}) => (
+const Component = ({ children }) => (
   <Context.Provider value={client}>{children}</Context.Provider>
 );
 
 export const useApi = () => React.useContext(Context);
 
 export default Component;
-
-
